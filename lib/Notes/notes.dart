@@ -27,13 +27,14 @@ class _NotesState extends State<Notes> {
         valueListenable: Boxes.getData().listenable(),
         builder: (context, box, _) {
           var data = box.values.toList().cast<NotesModel>();
-          return Card(
-            child: ListView.builder(
-              itemCount: box.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(data[index].title.toString()),
-                  subtitle: Text(data[index].desc.toString()),
+          return ListView.builder(
+            itemCount: box.length,
+            itemBuilder: (context, index) {
+              return Card(
+                elevation: 3,
+                child: ListTile(
+                  title: Text(data[index].title.toString(),style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                  subtitle: Text(data[index].desc.toString(),style: TextStyle(fontSize: 20),),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -47,7 +48,7 @@ class _NotesState extends State<Notes> {
                         },
                         icon: Icon(Icons.edit),
                       ),
-                      SizedBox(width: 9),
+                      SizedBox(width: 3),
                       IconButton(
                         onPressed: () {
                           delete(data[index]);
@@ -56,9 +57,9 @@ class _NotesState extends State<Notes> {
                       ),
                     ],
                   ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           );
         },
       ),
